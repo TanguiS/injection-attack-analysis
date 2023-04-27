@@ -1,0 +1,27 @@
+body {
+    background-color: #fff;
+    padding: 0em;
+    margin: 0;
+    font-size: 1em;
+}
+
+@page {
+    margin: 1cm; /* Set margin on each page */
+}
+
+img {
+    width: 200px;
+}
+
+th, td {
+    text-align: left;
+    padding: .1em 0;
+}
+
+.logo {
+    margin-bottom: 4em;
+}
+
+.t-label {
+    width: 250px;
+}
