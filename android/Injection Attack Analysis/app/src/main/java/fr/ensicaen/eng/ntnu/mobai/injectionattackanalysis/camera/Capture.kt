@@ -95,7 +95,6 @@ class Capture (
 
     public fun launchFramesCapture(currentDelay: Long, onImagesCompleted: () -> Unit) {
         if (isAmountOfImagesCompleted()) {
-            //callPAD.sendPADRequest()
             onImagesCompleted()
             return
         }

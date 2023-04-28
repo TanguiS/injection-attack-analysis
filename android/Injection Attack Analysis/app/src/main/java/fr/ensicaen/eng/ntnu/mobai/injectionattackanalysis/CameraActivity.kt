@@ -19,7 +19,10 @@ class CameraActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
 
-        _capture = Capture(findViewById(R.id._cameraView),this, _base64ImgList)
+        _capture = Capture(
+            findViewById(R.id._cameraView),this,
+            _base64ImgList, FRAME_AMOUNT, FRAME_LATENCY, FPS
+        )
 
         findViewById<Button>(R.id._captureBtn).setOnClickListener {
             _capture.launchFramesCapture(0) {
@@ -32,7 +35,7 @@ class CameraActivity : AppCompatActivity() {
     private fun callbackOnImagesCompleted(): Unit {
         val callPAD: CallPAD = CallPAD(_base64ImgList[0], _base64ImgList[1])
         _base64ImgList.clear()
-        callPAD.sendPADRequest()
+        //callPAD.sendPADRequest()
     }
 
     override fun onDestroy() {
