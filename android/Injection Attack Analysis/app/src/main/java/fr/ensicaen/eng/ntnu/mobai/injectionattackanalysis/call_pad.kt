@@ -18,8 +18,6 @@ class CallPAD(base64StringEncodedFrame_one: String, base64StringEncodedFrame_two
 
     public fun sendPADRequest()
     {
-        val url = URL("http://10.0.2.15:8080/ListOfImageToDecode")
-        val httpURLConnection = url.openConnection() as HttpURLConnection
         //prepare input data
         val jsonObject = JSONObject()
         val listOfFrames = listOf(_base64StringEncodedFrame_one, _base64StringEncodedFrame_two)
@@ -28,10 +26,12 @@ class CallPAD(base64StringEncodedFrame_one: String, base64StringEncodedFrame_two
         val jsonObjectString = jsonObject.toString()
 
         GlobalScope.launch(Dispatchers.IO) {
+            val url = URL("http://10.0.2.15:8080/ListOfImageToDecode")
+            val httpURLConnection = url.openConnection() as HttpURLConnection
             httpURLConnection.requestMethod = "POST"
             httpURLConnection.setRequestProperty("Content-Type", "application/json") // The format of the content we're sending to the server
             httpURLConnection.setRequestProperty("Accept", "application/json") // The format of response we want to get from the server
-            httpURLConnection.setRequestProperty("Ocp-Apim-Subscription-Key", "***********************")
+            //httpURLConnection.setRequestProperty("Ocp-Apim-Subscription-Key", "***********************")
             httpURLConnection.doInput = true
             httpURLConnection.doOutput = true
             // Send the JSON we created

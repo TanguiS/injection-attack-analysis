@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupCameraButton() {
         val btn = findViewById<Button>(R.id._camera)
         btn.setOnClickListener {
-            val intent = Intent(this, FramesCapture::class.java)
+            val intent = Intent(this, CameraActivity::class.java)
             startActivity(intent)
         }
     }

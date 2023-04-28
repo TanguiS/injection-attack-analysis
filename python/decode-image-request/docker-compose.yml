@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+    python-microservice:
+        # env_file:
+        #     - .env
+        build: .
+        ports:
+            - "80:80"

@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="fr.ensicaen.eng.ntnu.mobai.injectionattackanalysis.FramesCapture">
+            android:name="fr.ensicaen.eng.ntnu.mobai.injectionattackanalysis.CameraActivity">
         </activity>
     </application>
 </manifest>
