@@ -37,8 +37,8 @@ class ExifLoader:
 
     def __str__(self) -> str:
         out = "ExifStr from image:\n"
-        for key, value in self._map:
-            out += f"    {key}: {value}\n"
+        for key in TagName:
+            out += f"    {key.value}: {self._map[key.value]}\n"
         return out[:-1]
 
 

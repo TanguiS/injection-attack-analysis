@@ -28,10 +28,10 @@ def req_list_of_image_to_decode(rep: schemas.ListOfImageToDecode):
     try:
         exif_list = decode_list_of_image(rep)
         for exif in exif_list:
-            print(exif_list)
+            print(exif)
         print(f"Model consistency : {model_consistency(exif_list)}")
         print(f"Date consistency : {date_consistency(exif_list)}")
-        
+
     except:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                             detail="error occurred when parsing the data from client")
