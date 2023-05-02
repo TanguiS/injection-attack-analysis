@@ -35,7 +35,7 @@ class CameraActivity : AppCompatActivity() {
     private fun callbackOnImagesCompleted(): Unit {
         val callPAD: CallPAD = CallPAD(_base64ImgList[0], _base64ImgList[1])
         _base64ImgList.clear()
-        //callPAD.sendPADRequest()
+        callPAD.sendPADRequest()
     }
 
     override fun onDestroy() {

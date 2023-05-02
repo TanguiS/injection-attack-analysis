@@ -26,7 +26,7 @@ class CallPAD(base64StringEncodedFrame_one: String, base64StringEncodedFrame_two
         val jsonObjectString = jsonObject.toString()
 
         GlobalScope.launch(Dispatchers.IO) {
-            val url = URL("http://10.0.2.15:8080/ListOfImageToDecode")
+            val url = URL("http://10.24.255.59:8080/ListOfImageToDecode")
             val httpURLConnection = url.openConnection() as HttpURLConnection
             httpURLConnection.requestMethod = "POST"
             httpURLConnection.setRequestProperty("Content-Type", "application/json") // The format of the content we're sending to the server
