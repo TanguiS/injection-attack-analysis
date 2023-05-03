@@ -10,8 +10,8 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var _capture: Capture
 
     companion object {
-        private const val FRAME_AMOUNT: Int = 2
-        private const val FRAME_LATENCY: Int = 2
+        private const val FRAME_AMOUNT: Int = 5
+        private const val FRAME_LATENCY: Int = 0
         private const val FPS: Double = 30.00
     }
 
@@ -33,7 +33,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun callbackOnImagesCompleted(): Unit {
-        val callPAD: CallPAD = CallPAD(_base64ImgList[0], _base64ImgList[1])
+        val callPAD: CallPAD = CallPAD(_base64ImgList)
         _base64ImgList.clear()
         callPAD.sendPADRequest()
     }

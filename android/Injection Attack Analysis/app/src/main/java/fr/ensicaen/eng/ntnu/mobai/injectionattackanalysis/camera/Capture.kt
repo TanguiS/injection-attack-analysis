@@ -116,7 +116,7 @@ class Capture (
                 _outputBase64Stream.close()
                 val msg = "Photo capture succeeded"
                 Toast.makeText(_appCompatActivity.baseContext, msg, Toast.LENGTH_LONG).show()
-                Log.d(TAG, msg)
+                println("\nFRAME CAPTUREDTotal to capture : $_frameAmount\n, amount of frames taken : ${_base64Images.size}")
                 launchFramesCapture(ceil(_captureDelay).toLong(), onImagesCompleted)
             }
 

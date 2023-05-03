@@ -4,7 +4,8 @@ from fastapi import FastAPI
 from fastapi import HTTPException, status
 
 from app.images_decode.decoder import decode_list_of_image
-from app.injection_detection.metadatas_analysis.multiple_image_analysis import date_consistency, model_consistency
+from app.injection_detection.metadatas_analysis.multiple_image_analysis import date_consistency, model_consistency, \
+    replay_detection
 from app.schemas import schemas
 
 app = FastAPI(
@@ -25,18 +26,32 @@ def information():
 
 @app.post("/ListOfImageToDecode", status_code=status.HTTP_200_OK)
 def req_list_of_image_to_decode(rep: schemas.ListOfImageToDecode):
+    exif_list = decode_list_of_image(rep)
+    for exif in exif_list:
+        print(exif)
+    print(f"Model consistency : {model_consistency(exif_list)}")
+    print(f"Date consistency : {date_consistency(exif_list)}")
+    img64_list = [img for img in rep.listStr64_image]
+    print(f"Replay detection : {replay_detection(img64_list, True)}")
+    return {status.HTTP_200_OK: "OK, sent report"}
+
+"""
+@app.post("/ListOfImageToDecode", status_code=status.HTTP_200_OK)
+def req_list_of_image_to_decode(rep: schemas.ListOfImageToDecode):
     try:
         exif_list = decode_list_of_image(rep)
         for exif in exif_list:
             print(exif)
         print(f"Model consistency : {model_consistency(exif_list)}")
         print(f"Date consistency : {date_consistency(exif_list)}")
+        img64_list = [img for img in rep.listStr64_image]
+        print(f"Rgb consistency : {rgb_consistency(img64_list)}")
 
     except:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                             detail="error occurred when parsing the data from client")
     return {status.HTTP_200_OK: "OK, sent report"}
-
+"""
 
 if __name__ == '__main__':
     uvicorn.run(app, host="localhost", port=8080)

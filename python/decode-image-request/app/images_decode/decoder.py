@@ -25,20 +25,29 @@ class ExifLoader:
             self._map[tag_name] = tag_value
 
     def __getitem__(self, item: str) -> str:
-        return self._map[item]
+        try:
+            return self._map[item]
+        except KeyError:
+            raise KeyError(f"{item} not present")
 
     def __eq__(self, o: object) -> bool:
         if not isinstance(o, ExifLoader):
             return False
-        for tag in TagName.Make, TagName.Model, TagName.ImageWidth, TagName.ImageLength:
-            if self._map[tag.value] != o[tag.value]:
+        for tag in TagName:
+            try:
+                if self._map[tag.value] != o[tag.value]:
+                    return False
+            except KeyError:
                 return False
         return True
 
     def __str__(self) -> str:
         out = "ExifStr from image:\n"
         for key in TagName:
-            out += f"    {key.value}: {self._map[key.value]}\n"
+            try:
+                out += f"    {key.value}: {self._map[key.value]}\n"
+            except KeyError:
+                out += f"    {key.value}: {None}\n"
         return out[:-1]
 
 

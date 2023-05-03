@@ -12,21 +12,19 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 
-class CallPAD(base64StringEncodedFrame_one: String, base64StringEncodedFrame_two: String) {
-    private val _base64StringEncodedFrame_one = base64StringEncodedFrame_one
-    private val _base64StringEncodedFrame_two = base64StringEncodedFrame_two
+class CallPAD(imagesBase64List: List<String>) {
+    private val _imagesBase64 = imagesBase64List.toList()
 
     public fun sendPADRequest()
     {
         //prepare input data
         val jsonObject = JSONObject()
-        val listOfFrames = listOf(_base64StringEncodedFrame_one, _base64StringEncodedFrame_two)
-        val tempJsonString = JSONArray(listOfFrames)
+        val tempJsonString = JSONArray(_imagesBase64)
         jsonObject.put("listStr64_image", tempJsonString)
         val jsonObjectString = jsonObject.toString()
 
         GlobalScope.launch(Dispatchers.IO) {
-            val url = URL("http://10.24.255.59:8080/ListOfImageToDecode")
+            val url = URL("http://10.22.199.254:8080/ListOfImageToDecode")
             val httpURLConnection = url.openConnection() as HttpURLConnection
             httpURLConnection.requestMethod = "POST"
             httpURLConnection.setRequestProperty("Content-Type", "application/json") // The format of the content we're sending to the server
