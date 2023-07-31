@@ -7,19 +7,19 @@ Injection attack analysis on a android mobile application to simulate a vulnerab
 
 Single image:
 
-´´´json
+```json
 {
     "str64_image": "base64 image"
 }
-´´´
+```
 
 Multiple images:
 
-´´´json
+```json
 {
     "listStr64_image": ["first base64 image", ..., "last base64 image"]
 }
-´´´
+```
 
 
 3- Install the android application and modify the sending ip-address with the docker server one.
